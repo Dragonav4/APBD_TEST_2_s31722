@@ -1,0 +1,6 @@
+@APBD_TECT_2_HostAddress = http://localhost:5152
+
+GET {{APBD_TECT_2_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
