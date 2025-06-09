@@ -17,8 +17,9 @@ public class TrackRacesController : ControllerBase
     }
 
     [HttpPost("participants")]
-    public async Task<IActionResult> AddRacerAsync(AddTrackRaceParticipationsRequest racerParticipations)
+    public async Task<IActionResult> AddRacerAsync([FromBody]AddTrackRaceParticipationsRequest racerParticipations)
     {
+        if (!ModelState.IsValid) return Conflict(ModelState);
         if (racerParticipations == null) throw new BadRequestException("Participations cannot be null");
         await _trackRacesService.AddNewTrackRacesAsync(racerParticipations);
         return Created();
