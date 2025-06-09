@@ -19,9 +19,9 @@ public class TrackRacesService : ITrackRacesService
     {
         if (request == null) throw new BadRequestException("Request cannot be null", HttpStatusCode.BadRequest);
         if (request.RaceName == null || request.TrackName == null || request.Participations.Count == 0)
-            throw new BadRequestException("RaceName/TrackName is invalid", HttpStatusCode.BadRequest);
+            throw new BadRequestException("Data in body is invalid", HttpStatusCode.BadRequest);
         if (request.Participations.Count == 0)
-            throw new BadRequestException("Participations list is empty", HttpStatusCode.BadRequest);
+            throw new BadRequestException("Participation's list is empty", HttpStatusCode.BadRequest);
         var race = await _context.Races.FirstOrDefaultAsync(r => r.Name == request.RaceName);
         if (race == null)
             throw new BadRequestException("Race not found", HttpStatusCode.NotFound);
